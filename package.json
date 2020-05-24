@@ -4,7 +4,8 @@
   "description": "Server side scripts for the Eros Dating App",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "keywords": [
     "Date",
@@ -19,5 +20,17 @@
     "express": "^4.17.1",
     "lodash": "^4.17.15",
     "mongoose": "^5.9.14"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SedemQuame/Eros_Server_Side.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SedemQuame/Eros_Server_Side/issues"
+  },
+  "homepage": "https://github.com/SedemQuame/Eros_Server_Side#readme"
 }
