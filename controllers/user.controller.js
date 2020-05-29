@@ -18,7 +18,7 @@ const preferences = require(`../models/user.models`).preferences;
 // todo => optimise function.
 exports.createNewUserAccount = (req, res) => {   
     user.create({
-        name: `John Doe`,
+        name: req.params.name,
         age: 10,
         aboutMe: {
             bio: req.params.bio,
