@@ -1,36 +1,36 @@
 {
-  "name": "Eros-Server",
-  "version": "1.0.0",
-  "description": "Server side scripts for the Eros Dating App",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
-  },
-  "keywords": [
-    "Date",
-    "App",
-    "Eros"
-  ],
-  "author": "SedemQuame",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "lodash": "^4.17.15",
-    "mongoose": "^5.9.14"
-  },
-  "directories": {
-    "test": "tests"
-  },
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SedemQuame/Eros_Server_Side.git"
-  },
-  "bugs": {
-    "url": "https://github.com/SedemQuame/Eros_Server_Side/issues"
-  },
-  "homepage": "https://github.com/SedemQuame/Eros_Server_Side#readme"
+    "name": "Eros-Server",
+    "version": "1.0.0",
+    "description": "Server side scripts for the Eros Dating App",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo npm\"Error: no test specified\" && exit 1",
+        "start": "node app.js"
+    },
+    "keywords": [
+        "Date",
+        "App",
+        "Eros"
+    ],
+    "author": "SedemQuame",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "lodash": "^4.17.15",
+        "mongoose": "^5.9.14"
+    },
+    "directories": {
+        "test": "tests"
+    },
+    "devDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/SedemQuame/Eros_Server_Side.git"
+    },
+    "bugs": {
+        "url": "https://github.com/SedemQuame/Eros_Server_Side/issues"
+    },
+    "homepage": "https://github.com/SedemQuame/Eros_Server_Side#readme"
 }

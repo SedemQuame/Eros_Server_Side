@@ -25,7 +25,7 @@ const preferenceSchema = mongoose.Schema({
     ageRange: {type: String},
 });
 
-const media = mongoose.Schema({
+const mediaSchema = mongoose.Schema({
     assetUrl: {type: String},
     assetType: {type: String},
     numberOfLikes: {type: Number, default: 0}
@@ -43,13 +43,14 @@ const userSchema = mongoose.Schema({
     // personal information
     name: {type: String},
     age: {type: Number},
+    location: {type: String},
     profileImg: {type: String},
     firebaseUID: {type: String},
     aboutMe: aboutMeSchema,
     preferences: preferenceSchema,
     socialBackground: socialBackgroundSchema,
     contactInformation: contactInformationSchema,
-    mediaList: [media],
+    mediaList: [mediaSchema],
     notifications: [notificationSchema],
 });
 

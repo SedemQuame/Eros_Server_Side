@@ -23,6 +23,7 @@ exports.createNewUserAccount = (req, res) => {
         aboutMe: {
             bio: req.params.bio,
             views: req.params.views,
+            location: req.params.location,
         },
         preferences: {
             gender: req.params.gender,
@@ -94,7 +95,7 @@ exports.getAllUsers = (req, res) => {
         .then(docs => {
             res.send({users: docs});
         }).catch(err => {
-            res.send({msg: `Unable fetch user data. Try again later`})
+            res.send({msg: `Unable fetch user data. Try again later`});
         });
 };
 
