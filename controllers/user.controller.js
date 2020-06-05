@@ -21,6 +21,8 @@ exports.createNewUserAccount = (req, res) => {
         name: req.params.name,
         age: 10,
         location: req.params.location,
+        profileImg: req.params.image,
+        firebaseUID: "",
         aboutMe: {
             bio: req.params.bio,
             views: req.params.views,
@@ -54,8 +56,8 @@ exports.createNewUserAccount = (req, res) => {
 
 // todo => optimise function.
 exports.deleteExistingAccount = (req, res) => {
-    console.log(req.params.id);
-    user.findByIdAndDelete(req.params.id)
+    console.log(req.params.Id);
+    user.findByIdAndDelete(req.params.Id)
         .then(
             res.send({
                 msg: `Successfully deleted`
@@ -68,7 +70,7 @@ exports.deleteExistingAccount = (req, res) => {
 };
 
 exports.addNewPicture = (req, res) => {
-    user.findById(`5ec38afd28d1071be8bb19d8`)
+    user.findById(req.params.Id)
         .then(doc => {
             doc.mediaList.push({
                 assetUrl: `https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60`,
@@ -115,7 +117,7 @@ exports.getAllUsersWithMatchingPreferences = (req, res) => {
 // Person To Person Requests
 // =========================
 exports.requestMessageFromPossibleMatch = (req, res) => {   
-    user.findById({_id: `5ec38b5128d1071be8bb19e2`})
+    user.findById({_id: req.params.Id})
         .then(doc => {
             doc.notifications.push({
                 from: `5ec38b7828d1071be8bb19ec`,
@@ -134,7 +136,7 @@ exports.requestMessageFromPossibleMatch = (req, res) => {
 };
 
 exports.likePictureOfPossibleMatch = (req, res) => {   
-    user.findById({_id: `5ec38afd28d1071be8bb19d8`})
+    user.findById({_id: req.params.Id})
         .then(doc => {
            doc.mediaList.map(
                media => {
@@ -160,7 +162,7 @@ exports.likePictureOfPossibleMatch = (req, res) => {
 // Manipulating Account Assets & Details
 // =====================================
 exports.deletePicturePostedOnPlatform = (req, res) => {   
-    user.findById({_id: `5ec38afd28d1071be8bb19d8`})
+    user.findById({_id: req.params.Id})
         .then(doc => {
         _.remove(doc.mediaList, (media) => {
             return (media[`_id`] == `5ec3a556f9d0142890737bbe`);
@@ -183,7 +185,7 @@ exports.deletePicturePostedOnPlatform = (req, res) => {
 };
 
 exports.modifyUserName = (req, res) => {   
-    user.findById({_id: `5ec38afd28d1071be8bb19d8`})
+    user.findById({_id: req.params.Id})
         .then(doc => {
             doc.name = 'New name';
             doc.save();
@@ -199,7 +201,7 @@ exports.modifyUserName = (req, res) => {
 };
 
 exports.modifyContactDetails = (req, res) => {   
-    user.findById({_id: `5ec38afd28d1071be8bb19d8`})
+    user.findById({_id: req.params.Id})
         .then(doc => {
             doc.contactInformation.phoneNumber = 'New Phone Number';
             doc.save();
@@ -215,7 +217,7 @@ exports.modifyContactDetails = (req, res) => {
 };
 
 exports.changeProfileImg = (req, res) => {   
-    user.findById({_id: `5ec38afd28d1071be8bb19d8`})
+    user.findById({_id: req.params.Id})
         .then(doc => {
 
         })
@@ -223,7 +225,7 @@ exports.changeProfileImg = (req, res) => {
 };
 
 exports.modifyPreferences = (req, res) => {   
-    user.findById({_id: `5ec38afd28d1071be8bb19d8`})
+    user.findById({_id: req.params.Id})
         .then(doc => {
 
         })
@@ -231,7 +233,7 @@ exports.modifyPreferences = (req, res) => {
 };
 
 exports.modifySocialBackground = (req, res) => {   
-    user.findById({_id: `5ec38afd28d1071be8bb19d8`})
+    user.findById({_id: req.params.Id})
         .then(doc => {
 
         })

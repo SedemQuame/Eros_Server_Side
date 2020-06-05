@@ -9,7 +9,7 @@ module.exports = app => {
         });
 
 //     //========================================== app users routes ============================================//
-    app.route(`/createNewUserAccount/userName/:name/aboutMe/:bio.:views.:location/preferences/:gender.:ageRange.:lookingFor/socialBackground/:work.:religion.:school/contactInformation/:email.:phone`)
+    app.route(`/createNewUserAccount/userName/:name/profileImg/:image/aboutMe/:bio.:views.:location/preferences/:gender.:ageRange.:lookingFor/socialBackground/:work.:religion.:school/contactInformation/:email.:phone`)
        .post(user.createNewUserAccount);
 
     app.route(`/addNewPicture`)
