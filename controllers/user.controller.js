@@ -54,21 +54,6 @@ exports.createNewUserAccount = (req, res) => {
     });
 };
 
-// todo => optimise function.
-exports.deleteExistingAccount = (req, res) => {
-    console.log(req.params.Id);
-    user.findByIdAndDelete(req.params.Id)
-        .then(
-            res.send({
-                msg: `Successfully deleted`
-            })
-        ).catch(
-            res.send({
-                msg: `Unable to successfully delete account.`
-            })            
-        );
-};
-
 exports.addNewPicture = (req, res) => {
     user.findById(req.params.Id)
         .then(doc => {
@@ -89,9 +74,23 @@ exports.addNewPicture = (req, res) => {
         );
 };
 
+// todo => optimise function.
+exports.deleteExistingAccount = (req, res) => {
+    console.log(req.params.Id);
+    user.findByIdAndDelete(req.params.Id)
+        .then(
+            res.send({
+                msg: `Successfully deleted`
+            })
+        ).catch(
+            res.send({
+                msg: `Unable to successfully delete account.`
+            })            
+        );
+};
+
 // Querying User Accounts
 // ======================
-// todo => optimise function.
 exports.getAllUsers = (req, res) => {   
     user.find({})
         .then(docs => {
@@ -150,6 +149,38 @@ exports.likePictureOfPossibleMatch = (req, res) => {
            res.send({
                 msg: `Like Recorded`
            });
+        }).catch(err => {
+            res.send({
+                msg: `Unable to like Image.`,
+                err: err
+            });
+        });
+};
+
+exports.likePossibleMatch = (req, res) => {   
+    user.findById({_id: req.params.Id})
+        .then(doc => {
+            doc.numberOfLikes++;
+            doc.save();
+            res.send({
+                    msg: `Like Recorded`
+            });
+        }).catch(err => {
+            res.send({
+                msg: `Unable to like Image.`,
+                err: err
+            });
+        });
+};
+
+exports.lovePossibleMatch = (req, res) => {   
+    user.findById({_id: req.params.Id})
+        .then(doc => {
+            doc.numberOfLoves++;
+            doc.save();
+            res.send({
+                    msg: `Love Recorded`
+            });
         }).catch(err => {
             res.send({
                 msg: `Unable to like Image.`,
