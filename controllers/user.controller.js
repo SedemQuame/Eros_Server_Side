@@ -206,13 +206,13 @@ exports.lovePossibleMatch = (req, res) => {
             user.findById({_id: req.params.loverId})
                 .then(loverInfo => {
                     let msg = `${loverInfo.name}, has a crush on you.`;
-                    likee.notifications.push({
+                    lovee.notifications.push({
                         from: req.params.loverId,
                         subject: msg,
                     });
                     lovee.save();
                     res.send({
-                        msg: `Successfully added request to queue.`
+                        msg: `Successfully professed to ${lovee.name}.`
                     });
                 }).catch((err) => {
                     res.send({
