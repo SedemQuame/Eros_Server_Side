@@ -175,7 +175,7 @@ exports.likePossibleMatch = (req, res) => {
 };
 
 exports.lovePossibleMatch = (req, res) => {   
-    user.findById({_id: req.params.loverId})
+    user.findById({_id: req.params.loveeId})
         .then(doc => {
             doc.numberOfLoves++;
             doc.save();
