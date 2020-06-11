@@ -27,6 +27,9 @@ module.exports = app => {
     app.route(`/getAllUsersWithMatchingPreferences`)
         .post(user.getAllUsersWithMatchingPreferences);
 
+    app.route(`/getUserNotifications/:userId/`)
+        .post(user.getUserNotification);
+
 // ==================================================
     app.route(`/requestMessageFromPossibleMatch/:requesterId/:requesteeId`)
         .post(user.requestMessageFromPossibleMatch);

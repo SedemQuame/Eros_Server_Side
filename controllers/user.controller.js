@@ -113,6 +113,23 @@ exports.getAllUsersWithMatchingPreferences = (req, res) => {
         });
 };
 
+exports.getUserNotification = (req, res) => {
+    user.findById({_id: req.params.userId})
+        .then((user) => {
+            res.send({
+                notifications: user.notifications,
+                msg: `Returned all notifications`
+            });
+        })
+        .catch((err) => {
+            res.send({
+                notifications: [],
+                msg: "Failed to return all notifications",
+                err: err
+            });
+        });
+};
+
 // Person To Person Requests
 // =========================
 exports.likePictureOfPossibleMatch = (req, res) => {   
@@ -151,17 +168,17 @@ exports.requestMessageFromPossibleMatch = (req, res) => {
                     });
                     requestee.save();
                     res.send({
-                        msg: `Successfully added request to queue.`
+                        msg: `Successfully requested a message from ${requestee.name}.`
                     });
                 }).catch((err) => {
                     res.send({
-                        msg: `Unable to request message from user.`,
+                        msg: `Unable to request a message from ${requestee.name}.`,
                         err: err
                     });
                 });
         }).catch(err => {
             res.send({
-                msg: `Unable to request message from user.`,
+                msg: `Unable to request a message from ${requestee.name}.`,
                 err: err
             });
         });
@@ -182,17 +199,17 @@ exports.likePossibleMatch = (req, res) => {
                     });
                     likee.save();
                     res.send({
-                        msg: `Successfully added request to queue.`
+                        msg: `Successfully liked ${likee.name}'s profile.`
                     });
                 }).catch((err) => {
                     res.send({
-                        msg: `Unable to like user profile.`,
+                        msg: `Unable to like ${likee.name}'s profile.`,
                         err: err
                     });
                 });
         }).catch(err => {
             res.send({
-                msg: `Unable to like Image.`,
+                msg: `Unable to like ${likee.name}'s profile.`,
                 err: err
             });
         });
@@ -216,13 +233,13 @@ exports.lovePossibleMatch = (req, res) => {
                     });
                 }).catch((err) => {
                     res.send({
-                        msg: `Unable to like user profile.`,
+                        msg: `Unable, to profess to ${lovee.name}. Try again later.`,
                         err: err
                     });
                 });
         }).catch(err => {
             res.send({
-                msg: `Unable to like Image.`,
+                msg: `Unable, to profess to ${lovee.name}. Try again later.`,
                 err: err
             });
         });
