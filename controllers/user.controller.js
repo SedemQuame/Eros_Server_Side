@@ -46,7 +46,7 @@ exports.createNewUserAccount = (req, res) => {
             msg: `Successfully created user account.`,
             // return id of user's mongo collection.
             _id: docs._id,
-        })
+        });
     }).catch(err => {
         res.send({
             err: err
@@ -116,10 +116,10 @@ exports.getAllUsersWithMatchingPreferences = (req, res) => {
 // Person To Person Requests
 // =========================
 exports.requestMessageFromPossibleMatch = (req, res) => {   
-    user.findById({_id: req.params.Id})
+    user.findById({_id: req.params.requesteeId})
         .then(doc => {
             doc.notifications.push({
-                from: `5ec38b7828d1071be8bb19ec`,
+                from: req.params.requesterId,
                 subject: `Love profession then things.`,
             });
             doc.save();
@@ -157,8 +157,9 @@ exports.likePictureOfPossibleMatch = (req, res) => {
         });
 };
 
-exports.likePossibleMatch = (req, res) => {   
-    user.findById({_id: req.params.Id})
+exports.likePossibleMatch = (req, res) => { 
+    // append likeeId to list of liked people.  
+    user.findById({_id: req.params.likeeId})
         .then(doc => {
             doc.numberOfLikes++;
             doc.save();
@@ -174,7 +175,7 @@ exports.likePossibleMatch = (req, res) => {
 };
 
 exports.lovePossibleMatch = (req, res) => {   
-    user.findById({_id: req.params.Id})
+    user.findById({_id: req.params.loverId})
         .then(doc => {
             doc.numberOfLoves++;
             doc.save();

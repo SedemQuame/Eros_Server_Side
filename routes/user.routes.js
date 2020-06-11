@@ -28,16 +28,16 @@ module.exports = app => {
         .post(user.getAllUsersWithMatchingPreferences);
 
 // ==================================================
-    app.route(`/requestMessageFromPossibleMatch`)
+    app.route(`/requestMessageFromPossibleMatch/:requesterId/:requesteeId`)
         .post(user.requestMessageFromPossibleMatch);
 
     app.route(`/likePictureOfPossibleMatch`)
         .post(user.likePictureOfPossibleMatch);
 
-    app.route(`/likePossibleMatch`)
+    app.route(`/likePossibleMatch/:likerId/:likeeId`)
         .post(user.likePossibleMatch);
         
-    app.route(`/lovePossibleMatch`)
+    app.route(`/lovePossibleMatch/:loverId/:loveeId`)
         .post(user.lovePossibleMatch);        
         
     app.route(`/deletePicturePostedOnPlatform`)
