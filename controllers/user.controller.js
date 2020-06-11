@@ -115,25 +115,6 @@ exports.getAllUsersWithMatchingPreferences = (req, res) => {
 
 // Person To Person Requests
 // =========================
-exports.requestMessageFromPossibleMatch = (req, res) => {   
-    user.findById({_id: req.params.requesteeId})
-        .then(doc => {
-            doc.notifications.push({
-                from: req.params.requesterId,
-                subject: `Love profession then things.`,
-            });
-            doc.save();
-            res.send({
-                msg: `Successfully added request to queue.`
-            });
-        }).catch(err => {
-            res.send({
-                msg: `Unable to request message from user.`,
-                err: err
-            });
-        });
-};
-
 exports.likePictureOfPossibleMatch = (req, res) => {   
     user.findById({_id: req.params.Id})
         .then(doc => {
@@ -157,15 +138,58 @@ exports.likePictureOfPossibleMatch = (req, res) => {
         });
 };
 
+exports.requestMessageFromPossibleMatch = (req, res) => {   
+    user.findById({_id: req.params.requesteeId})
+        .then(requestee => {
+            // Getting requester details.
+            user.findById({_id: req.params.requesteeId})
+                .then(requesterInfo => {
+                    let msg = `${requesterInfo.name}, sent you a message request.`;
+                    requestee.notifications.push({
+                        from: req.params.requesterId,
+                        subject: msg,
+                    });
+                    requestee.save();
+                    res.send({
+                        msg: `Successfully added request to queue.`
+                    });
+                }).catch((err) => {
+                    res.send({
+                        msg: `Unable to request message from user.`,
+                        err: err
+                    });
+                });
+        }).catch(err => {
+            res.send({
+                msg: `Unable to request message from user.`,
+                err: err
+            });
+        });
+};
+
 exports.likePossibleMatch = (req, res) => { 
     // append likeeId to list of liked people.  
     user.findById({_id: req.params.likeeId})
-        .then(doc => {
-            doc.numberOfLikes++;
-            doc.save();
-            res.send({
-                    msg: `Like Recorded`
-            });
+        .then(likee => {
+            likee.numberOfLikes++;
+            // Getting requester details.
+            user.findById({_id: req.params.likerId})
+                .then(likerInfo => {
+                    let msg = `${likerInfo.name}, likes you.`;
+                    likee.notifications.push({
+                        from: req.params.likerId,
+                        subject: msg,
+                    });
+                    likee.save();
+                    res.send({
+                        msg: `Successfully added request to queue.`
+                    });
+                }).catch((err) => {
+                    res.send({
+                        msg: `Unable to like user profile.`,
+                        err: err
+                    });
+                });
         }).catch(err => {
             res.send({
                 msg: `Unable to like Image.`,
@@ -176,12 +200,26 @@ exports.likePossibleMatch = (req, res) => {
 
 exports.lovePossibleMatch = (req, res) => {   
     user.findById({_id: req.params.loveeId})
-        .then(doc => {
-            doc.numberOfLoves++;
-            doc.save();
-            res.send({
-                    msg: `Love Recorded`
-            });
+        .then(lovee => {
+            lovee.numberOfLoves++;
+            // Getting requester details.
+            user.findById({_id: req.params.loverId})
+                .then(loverInfo => {
+                    let msg = `${loverInfo.name}, has a crush on you.`;
+                    likee.notifications.push({
+                        from: req.params.loverId,
+                        subject: msg,
+                    });
+                    lovee.save();
+                    res.send({
+                        msg: `Successfully added request to queue.`
+                    });
+                }).catch((err) => {
+                    res.send({
+                        msg: `Unable to like user profile.`,
+                        err: err
+                    });
+                });
         }).catch(err => {
             res.send({
                 msg: `Unable to like Image.`,
