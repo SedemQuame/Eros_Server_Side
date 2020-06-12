@@ -165,6 +165,7 @@ exports.requestMessageFromPossibleMatch = (req, res) => {
                     requestee.notifications.push({
                         from: req.params.requesterId,
                         subject: msg,
+                        requesterImg: requesterInfo.profileImg
                     });
                     requestee.save();
                     res.send({
