@@ -197,6 +197,7 @@ exports.likePossibleMatch = (req, res) => {
                     likee.notifications.push({
                         from: req.params.likerId,
                         subject: msg,
+                        requesterImg: requesterInfo.profileImg
                     });
                     likee.save();
                     res.send({
@@ -227,6 +228,7 @@ exports.lovePossibleMatch = (req, res) => {
                     lovee.notifications.push({
                         from: req.params.loverId,
                         subject: msg,
+                        requesterImg: requesterInfo.profileImg
                     });
                     lovee.save();
                     res.send({
