@@ -46,7 +46,7 @@ module.exports = app => {
     app.route(`/lovePossibleMatch/:loverId/:loveeId`)
         .post(user.lovePossibleMatch);        
         
-    app.route(`/deletePicturePostedOnPlatform`)
+    app.route(`/deletePicturePostedOnPlatform/:userId/:pictureImgId`)
         .post(user.deletePicturePostedOnPlatform);
 
 // ==================================================

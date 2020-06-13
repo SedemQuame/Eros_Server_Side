@@ -269,14 +269,12 @@ exports.lovePossibleMatch = (req, res) => {
 // Manipulating Account Assets & Details
 // =====================================
 exports.deletePicturePostedOnPlatform = (req, res) => {   
-    user.findById({_id: req.params.Id})
+    user.findById({_id: req.params.userId})
         .then(doc => {
         _.remove(doc.mediaList, (media) => {
-            return (media[`_id`] == `5ec3a556f9d0142890737bbe`);
+            return (media[`_id`] == req.params.pictureImgId);
         });
-        // doc.save();
-        console.log(doc);
-
+        doc.save();
         // todo: write server side code for deleting the picture
         // on the storage platform.
         
