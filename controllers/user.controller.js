@@ -55,10 +55,10 @@ exports.createNewUserAccount = (req, res) => {
 };
 
 exports.addNewPicture = (req, res) => {
-    user.findById(req.params.Id)
+    user.findById(req.params.userId)
         .then(doc => {
             doc.mediaList.push({
-                assetUrl: `https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60`,
+                assetUrl: req.params.newImgUrl,
                 assetType: `Image`,
                 numberOfLikes: 0
             });

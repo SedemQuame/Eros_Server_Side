@@ -13,7 +13,7 @@ module.exports = app => {
     app.route(`/createNewUserAccount/userName/:name/profileImg/:image/aboutMe/:bio.:views.:location/preferences/:gender.:ageRange.:lookingFor/socialBackground/:work.:religion.:school/contactInformation/:email.:phone`)
        .post(user.createNewUserAccount);
 
-    app.route(`/addNewPicture`)
+    app.route(`/addNewPicture/:userId/:newImgUrl`)
        .post(user.addNewPicture);
 
     app.route(`/deleteExistingAccount/userDocId/:id`)
