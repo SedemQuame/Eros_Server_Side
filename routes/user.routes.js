@@ -30,6 +30,9 @@ module.exports = app => {
     app.route(`/getUserNotifications/:userId/`)
         .post(user.getUserNotification);
 
+    app.route(`/getUserMediaList/:userId`)
+        .post(user.getUserMediaList);
+
 // ==================================================
     app.route(`/requestMessageFromPossibleMatch/:requesterId/:requesteeId`)
         .post(user.requestMessageFromPossibleMatch);

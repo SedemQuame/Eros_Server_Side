@@ -130,6 +130,23 @@ exports.getUserNotification = (req, res) => {
         });
 };
 
+exports.getUserMediaList = (req, res) => {
+    user.findById({_id: req.params.userId})
+        .then((user) => {
+            res.send({
+                mediaList: user.mediaList,
+                msg: `Returned all media lists.`
+            });
+        })
+        .catch((err) => {
+            res.send({
+                mediaList: [],
+                msg: "Failed to return media list",
+                err: err
+            });
+        });
+};
+
 // Person To Person Requests
 // =========================
 exports.likePictureOfPossibleMatch = (req, res) => {   
