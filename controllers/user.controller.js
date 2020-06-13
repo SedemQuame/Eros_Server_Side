@@ -271,15 +271,25 @@ exports.lovePossibleMatch = (req, res) => {
 exports.deletePicturePostedOnPlatform = (req, res) => {   
     user.findById({_id: req.params.userId})
         .then(doc => {
-        _.remove(doc.mediaList, (media) => {
-            return (media[`_id`] == req.params.pictureImgId);
+
+        let mediaList = doc.mediaList;
+        console.log(`Unchanged: ${mediaList}`);
+            
+        mediaList = _.remove(mediaList, (media) => {
+            return (media[`_id`] != req.params.pictureImgId);
         });
+
+        console.log(`Changed: ${mediaList}`);
+
+        doc.mediaList = mediaList;
+
         doc.save();
         // todo: write server side code for deleting the picture
         // on the storage platform.
         
         res.send({
-                msg: `Image Deleted.`
+                msg: `Image Deleted.`,
+                doc: mediaList
         });
         }).catch(err => {
             res.send({
