@@ -332,11 +332,20 @@ exports.modifyContactDetails = (req, res) => {
 };
 
 exports.changeProfileImg = (req, res) => {   
-    user.findById({_id: req.params.Id})
+    user.findById({_id: req.params.userId})
         .then(doc => {
-
+            doc.profileImg = req.params.newProfilePictureUrl;
+            doc.save();
+            res.send({
+                msg: `Successfully changed profile picture.`
+            });
         })
-        .catch();
+        .catch(err => {
+            res.send({
+                msg: `Unable to change profile picture.`,
+                err: err
+            });
+        });
 };
 
 exports.modifyPreferences = (req, res) => {   

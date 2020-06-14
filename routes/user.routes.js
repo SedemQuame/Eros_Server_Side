@@ -57,7 +57,7 @@ module.exports = app => {
     app.route(`/modifyContactDetails`)
         .post(user.modifyContactDetails);
 
-    app.route(`/changeProfileImg`)
+    app.route(`/changeProfileImg/:userId/:newProfilePictureUrl`)
         .post(user.changeProfileImg);
 
     app.route(`/modifyPreferences`)
