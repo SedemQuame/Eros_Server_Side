@@ -16,7 +16,7 @@ module.exports = app => {
     app.route(`/addNewPicture/:userId/:newImgUrl`)
        .post(user.addNewPicture);
 
-    app.route(`/deleteExistingAccount/userDocId/:id`)
+    app.route(`/deleteExistingAccount/:userId`)
         .post(user.deleteExistingAccount);
 
 // ==================================================

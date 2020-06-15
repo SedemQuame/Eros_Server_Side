@@ -76,8 +76,8 @@ exports.addNewPicture = (req, res) => {
 
 // todo => optimise function.
 exports.deleteExistingAccount = (req, res) => {
-    console.log(req.params.Id);
-    user.findByIdAndDelete(req.params.Id)
+    console.log(req.params.userId);
+    user.findByIdAndDelete(req.params.userId)
         .then(
             res.send({
                 msg: `Successfully deleted`
