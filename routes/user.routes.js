@@ -21,7 +21,7 @@ module.exports = app => {
 
 // ==================================================
     //Implemented
-    app.route(`/getAllUsers`) 
+    app.route(`/getAllUsers/:userId`) 
         .post(user.getAllUsers);
 
     app.route(`/getAllUsersWithMatchingPreferences`)

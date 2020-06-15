@@ -94,9 +94,15 @@ exports.deleteExistingAccount = (req, res) => {
 exports.getAllUsers = (req, res) => {   
     user.find({})
         .then(docs => {
+            docs = docs.filter(doc => {
+                return (doc._id != req.params.userId );
+            });
             res.send({users: docs});
         }).catch(err => {
-            res.send({msg: `Unable fetch user data. Try again later`});
+            res.send({
+                msg: `Unable to fetch user data. Try again later`,
+                err: err
+            });
         });
 };
 
